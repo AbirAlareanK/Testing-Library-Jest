@@ -1,5 +1,5 @@
 import { render, screen , fireEvent } from '@testing-library/react';
-import App from './App';
+import App , {precedeCamelToSpace} from './App';
 
 test('Button has correct initial condition', () => {
   render(<App />);
@@ -58,11 +58,25 @@ test('clicked disabled button has gray bg and reverts to blue' , ()=> {
   const button = screen.getByRole('button' , {name : /Change to blue/i });
 
   fireEvent.click(button);
-  
+
   fireEvent.click(checkbox);
   expect(button).toHaveStyle({backgroundColor : 'gray'});
 
   fireEvent.click(checkbox);
   expect(button).toHaveStyle({backgroundColor : 'blue'});
 
+})
+
+describe('Spaces before camel case capitals' , () => {
+  test('Works for no inner capitals letters' , () => {
+      expect(precedeCamelToSpace('Red')).toBe('Red');
+  });
+  test('Works for one inner capital letter' , () => {
+    expect(precedeCamelToSpace('MidnightBlue')).toBe('Midnight Blue');
+    
+  });
+  test('Works for multiple inner capital letters' , () => {
+    expect(precedeCamelToSpace('MediumVioletRed')).toBe('Medium Violet Red');
+    
+  });
 })
