@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App-header">
         <button onClick={()=> setButtonColor(newButtonColor)}
-                style={{backgroundColor : buttonColor}}
+                style={{backgroundColor : disabledButton ? 'gray' : buttonColor}}
                 disabled={disabledButton}
         >Change to {newButtonColor}</button>
         <input type="checkbox"
