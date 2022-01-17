@@ -25,7 +25,7 @@ test('initial button condition' , () => {
 test('Toggle button disability on click' , () => {
   render(<App />);
 
-  const checkbox = screen.getByRole('checkbox');
+  const checkbox = screen.getByRole('checkbox' , {name : 'Disable button'});
   const button = screen.getByRole('button' , {name : /Change to blue/i })
   expect(checkbox).not.toBeChecked();
 
