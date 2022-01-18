@@ -3,24 +3,24 @@ import App , {precedeCamelToSpace} from './App';
 
 test('Button has correct initial condition', () => {
   render(<App />);
-  const button = screen.getByRole('button' , {name : /change to blue/i }) 
-  expect(button).toHaveStyle({backgroundColor : 'red'})
+  const button = screen.getByRole('button' , {name : /Change to Midnight Blue/i }) 
+  expect(button).toHaveStyle({backgroundColor : 'MediumVioletRed'})
   fireEvent.click(button);
 
-  expect(button).toHaveStyle({backgroundColor : 'blue'})
+  expect(button).toHaveStyle({backgroundColor : 'MidnightBlue'})
 
-  expect(button.textContent).toBe('Change to red')
+  expect(button.textContent).toBe('Change to Medium Violet Red')
 });
 
 
 test('initial button condition' , () => {
   render(<App />);
 
-  const button = screen.getByRole('button' , { name : /change to blue/i  })
+  const button = screen.getByRole('button' , { name : /Change to Midnight Blue/i  })
 
   expect(button).toBeEnabled();
   
-  expect(button).toHaveStyle({backgroundColor : 'red'});
+  expect(button).toHaveStyle({backgroundColor : 'MediumVioletRed'});
 
 })
 
@@ -28,7 +28,7 @@ test('Toggle button disability on click' , () => {
   render(<App />);
 
   const checkbox = screen.getByRole('checkbox' , {name : 'Disable button'});
-  const button = screen.getByRole('button' , {name : /Change to blue/i })
+  const button = screen.getByRole('button' , {name : /Change to Midnight Blue/i })
   expect(checkbox).not.toBeChecked();
 
   fireEvent.click(checkbox);
@@ -41,13 +41,13 @@ test('Disabled button has a gray bg and reverts to red' , ()=> {
   render(<App />);
 
   const checkbox = screen.getByRole('checkbox' , {name : 'Disable button'});
-  const button = screen.getByRole('button' , {name : /Change to blue/i });
+  const button = screen.getByRole('button' , {name : /Change to Midnight Blue/i });
   
   fireEvent.click(checkbox);
   expect(button).toHaveStyle({backgroundColor : 'gray'});
 
   fireEvent.click(checkbox);
-  expect(button).toHaveStyle({backgroundColor : 'red'});
+  expect(button).toHaveStyle({backgroundColor : 'MediumVioletRed'});
 
 })
 
@@ -55,7 +55,7 @@ test('clicked disabled button has gray bg and reverts to blue' , ()=> {
   render(<App />);
 
   const checkbox = screen.getByRole('checkbox' , {name : 'Disable button'});
-  const button = screen.getByRole('button' , {name : /Change to blue/i });
+  const button = screen.getByRole('button' , {name : /Change to Midnight Blue/i });
 
   fireEvent.click(button);
 
@@ -63,7 +63,7 @@ test('clicked disabled button has gray bg and reverts to blue' , ()=> {
   expect(button).toHaveStyle({backgroundColor : 'gray'});
 
   fireEvent.click(checkbox);
-  expect(button).toHaveStyle({backgroundColor : 'blue'});
+  expect(button).toHaveStyle({backgroundColor : 'MidnightBlue'});
 
 })
 

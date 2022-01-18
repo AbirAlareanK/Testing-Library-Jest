@@ -8,17 +8,17 @@ export function precedeCamelToSpace(colorName) {
 
 function App() {
 
-  const [ buttonColor , setButtonColor ] = useState('red') ;
+  const [ buttonColor , setButtonColor ] = useState('MediumVioletRed') ;
   const [ disabledButton , setDisabledButton ] = useState(false);
 
-  const newButtonColor = buttonColor === 'red' ? 'blue' : 'red'
+  const newButtonColor = buttonColor === 'MediumVioletRed' ? 'MidnightBlue' : 'MediumVioletRed'
 
   return (
     <div className="App-header">
         <button onClick={()=> setButtonColor(newButtonColor)}
                 style={{backgroundColor : disabledButton ? 'gray' : buttonColor}}
                 disabled={disabledButton}
-        >Change to {newButtonColor}</button>
+        >Change to {precedeCamelToSpace(newButtonColor)}</button>
         <input type="checkbox"
                 id="disable-button-checkbox"
                 aria-checked={disabledButton}
