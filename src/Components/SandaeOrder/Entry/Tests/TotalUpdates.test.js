@@ -1,11 +1,11 @@
-import { render , screen } from "@testing-library/react";
+import { render , screen } from "../../../../Test-Utility/test-utils"
 import userEvent from '@testing-library/user-event';
 import Options from "../Options";
 
 test('Update scoop subtotal when scoops changes' , async ()=> {
     render(<Options optionType="scoops" />);
 
-    const scoopSubtotal = screen.getByText('Scoops total: ' , {exact : false});
+    const scoopSubtotal = screen.getByText('Scoops total: $' , {exact : false});
     expect(scoopSubtotal).toHaveTextContent('0.00');
 
     const vanillaInput = await screen.findByRole('spinbutton' , {name : "Vanilla"})
