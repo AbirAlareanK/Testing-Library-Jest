@@ -1,14 +1,12 @@
 import './App.css';
-import Options from './Components/SandaeOrder/Entry/Options';
-// import SummaryForm from './Components/SandaeOrder/Summary/SummaryForm';
+import OdrerEntry from './Components/SandaeOrder/Entry/OdrerEntry';
 
 function App() {
 
 
   return (
     <div className="App-header">
-        {/* <SummaryForm /> */}
-        <Options />  
+        <OdrerEntry />
     </div>
   );
 }
