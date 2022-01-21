@@ -9,13 +9,12 @@ export default function ScoopOptions({ name, imagePath, updateItemCount }) {
 
     const handleChange = (event) => {
         const inputValue = event.target.value;
+        setInputIsInvalid(false);
+
         if( inputValue > 10 || inputValue < 0 || inputValue - Math.floor(inputValue) !== 0){
             setInputIsInvalid(true);
-            return;
-        }else{
-            setInputIsInvalid(false);
-            updateItemCount(name, event.target.value);
         }
+        if(inputIsInvalid) updateItemCount(name, inputValue);
     };
 
   return (
