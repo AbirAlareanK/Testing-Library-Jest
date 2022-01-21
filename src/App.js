@@ -7,7 +7,7 @@ function App() {
     <Container>
       <OrderDetailsProvider>
         {/* Summary page and entry page need provider */}
-        <OrderEntry />
+        <OrderEntry style={{width:'60%'}}/>
       </OrderDetailsProvider>
       {/* confirmation page does not need provider */}
     </Container>

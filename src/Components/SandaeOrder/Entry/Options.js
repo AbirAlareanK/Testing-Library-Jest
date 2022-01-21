@@ -29,22 +29,23 @@ const Options = ({optionType}) => {
 
     const ItemComponent = optionType === 'scoops' ? ScoopOption : ToppingOption;
 
-    const optionItems = items.map(item => <ItemComponent   name={item.name}
-                                                            key={item.name}
-                                                            imagePath={item.imagePath}
-                                                            updateItemCount={(itemName, newItemCount) =>
-                                                                updateItemCount(itemName, newItemCount, optionType)
-                                                              }/>)
+    const optionItems = items.map(item => <ItemComponent   
+                                                name={item.name}
+                                                key={item.name}
+                                                imagePath={item.imagePath}
+                                                updateItemCount={(itemName, newItemCount) =>
+                                                    updateItemCount(itemName, newItemCount, optionType)
+                                                }/>)
     const title = optionType[0].toUpperCase() + optionType.slice(1).toLowerCase();
     return (
         <>
-        <h2>{title}</h2>
-        <p>{pricePerItem[optionType]} each</p>
-        <p>
-          {title} total: {orderDetails.totals[optionType]}
-        </p>
-        <Row>{optionItems}</Row>
-      </>
+            <h2>{title}</h2>
+            <p>{pricePerItem[optionType]} each</p>
+            <p>
+            {title} total: {orderDetails.totals[optionType]}
+            </p>
+            <Row>{optionItems}</Row>
+        </>
     );
 };
 
