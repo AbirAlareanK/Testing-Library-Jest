@@ -14,7 +14,6 @@ const Options = ({optionType}) => {
     const [ error , setError ] = useState(false);
     const [orderDetails, updateItemCount] = useOrderDetails();
 
-    console.log(orderDetails.totals['scoops'])
     useEffect(()=>{
         axios.get(`http://localhost:3030/${optionType}`)
         .then((response) => setItems(response.data))
