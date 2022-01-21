@@ -1,4 +1,3 @@
-import userEvent from "@testing-library/user-event";
 import {render , screen} from "../../../../Test-Utility/test-utils";
 import Options from "../Options";
 
@@ -24,23 +23,3 @@ test('Displays image from each topping from the server' , async () => {
 
 })
 
-test('Validate scoop input value' , async()=> {
-    render(<Options optionType="scoops" />)
-
-    const vanillaInput = await screen.findByRole('spinbutton' , {name : 'Vanilla'})
-    // check if the value is higher than 10
-    userEvent.clear(vanillaInput);
-    userEvent.type(vanillaInput , '13');
-    expect(vanillaInput).toHaveClass('is-invalid');
-
-    // check if the value is negative
-    userEvent.clear(vanillaInput);
-    userEvent.type(vanillaInput , '-12');
-    expect(vanillaInput).toHaveClass('is-invalid');
-    
-    // check if the value is Decimal
-    userEvent.clear(vanillaInput);
-    userEvent.type(vanillaInput , '0.4');
-    expect(vanillaInput).toHaveClass('is-invalid');
-
-})
