@@ -1,5 +1,7 @@
-import { screen, render } from "../../../../Test-Utility/test-utils";
+import { screen, render , waitFor} from "../../../../Test-Utility/test-utils";
 import OrderConfirmation from "../OrderConfirmation";
+import {server} from '../../../../mocks/server';
+import {rest} from 'msw';
 
 test('Show and hide Loading.. div while waiting the server' , async()=> {
     render(<OrderConfirmation />);
@@ -14,5 +16,21 @@ test('Show and hide Loading.. div while waiting the server' , async()=> {
 
     // expect the loading to disappear from the document
     expect(loadingText).not.toBeInTheDocument();
+
+})
+
+test('Handle Error for not getting order Number from the server' , async()=> {
+    server.resetHandlers(
+        rest.post('http://localhost:3030/order' ,(req, res, ctx)=> {
+            res(ctx.status(500));
+        })
+    )
+    render(<OrderConfirmation />);
+
+    await waitFor( async()=>{
+        const errorAlert = await screen.findByRole('alert');
+        expect(errorAlert).toHaveTextContent("Can't fetch data from the server, Please try again later");
+    });
+
 
 })
