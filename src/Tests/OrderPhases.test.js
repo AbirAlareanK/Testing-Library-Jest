@@ -28,9 +28,17 @@ test('App phases workflow - The happy path' , async()=> {
     userEvent.click(confirmCheckbox);
     userEvent.click(confirmOrderButton);
 
+    // Expect Loading to show 
+    const loadingText = screen.getByText('Loading' , {exact : false});
+    expect(loadingText).toBeInTheDocument();
+
     //confirm order number on  confirmatiom page
     const ordernumberText = await screen.findByText('Your order number is:' , {exact : false});
     expect(ordernumberText).toHaveTextContent('7605371106');
+
+    // Expect Loading to disappear
+    expect(loadingText).not.toBeInTheDocument();
+    
     // click new order button on confirmation page
     const newOrderButton = screen.getByRole('button' , {name : /create new Order/i})
     userEvent.click(newOrderButton);

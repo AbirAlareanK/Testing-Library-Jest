@@ -32,7 +32,9 @@ const OrderConfirmation = ({setOrderPhase}) => {
             </div>
         )
     }else{
-        return (<div>Loading...</div>)
+        return (<div>
+                    <p>Loading...</p>
+                </div>)
     }
 };
 
