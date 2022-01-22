@@ -37,6 +37,7 @@ const Options = ({optionType}) => {
                                                     updateItemCount(itemName, newItemCount, optionType)
                                                 }/>)
     const title = optionType[0].toUpperCase() + optionType.slice(1).toLowerCase();
+    
     return (
         <>
             <h2>{title}</h2>

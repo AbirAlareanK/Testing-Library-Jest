@@ -17,9 +17,9 @@ test('App phases workflow - The happy path' , async()=> {
     userEvent.click(orderButton)
 
     //check summary information based on order
-    const scoopsSubtotal = screen.getByText('your total for scoops order is' , {exact: false});
+    const scoopsSubtotal = screen.getByText('your total for Scoops order is:' , {exact: false});
     expect(scoopsSubtotal).toHaveTextContent('2.00');
-    const toppingsSubtotal = screen.getByText('your total for Toppings order is' , {exact : false});
+    const toppingsSubtotal = screen.getByText('your total for Toppings order is:' , {exact : false});
     expect(toppingsSubtotal).toHaveTextContent('1.50');
 
     //accept T&C and click confirm order button
@@ -38,7 +38,7 @@ test('App phases workflow - The happy path' , async()=> {
 
     // Expect Loading to disappear
     expect(loadingText).not.toBeInTheDocument();
-    
+
     // click new order button on confirmation page
     const newOrderButton = screen.getByRole('button' , {name : /create new Order/i})
     userEvent.click(newOrderButton);

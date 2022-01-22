@@ -8,13 +8,20 @@ export default function ScoopOptions({ name, imagePath, updateItemCount }) {
     const [inputIsInvalid , setInputIsInvalid ] = useState(false);
 
     const handleChange = (event) => {
-        const inputValue = event.target.value;
-        setInputIsInvalid(false);
+        const currentValue = event.target.value;
 
-        if( inputValue > 10 || inputValue < 0 || inputValue - Math.floor(inputValue) !== 0){
-            setInputIsInvalid(true);
-        }
-        if(inputIsInvalid) updateItemCount(name, inputValue);
+        // make sure we're using a number and not a string to validate
+        const currentValueFloat = parseFloat(currentValue);
+        const valueIsValid =
+          0 <= currentValueFloat &&
+          currentValueFloat <= 10 &&
+          Math.floor(currentValueFloat) === currentValueFloat;
+    
+        // validate
+        setInputIsInvalid(valueIsValid);
+    
+        // only update context if the value is valid
+        if (valueIsValid) updateItemCount(name, currentValue);
     };
 
   return (
@@ -34,7 +41,7 @@ export default function ScoopOptions({ name, imagePath, updateItemCount }) {
         </Form.Label>
         <Col xs="5" style={{ textAlign: 'left' }}>
           <Form.Control
-            className={inputIsInvalid ? "is-invalid" : 'invalid'}
+            isInvalid={!inputIsInvalid}
             type="number"
             defaultValue={0}
             onChange={handleChange}

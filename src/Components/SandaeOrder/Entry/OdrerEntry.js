@@ -6,7 +6,7 @@ const OdrerEntry = ({setOrderPhase }) => {
 
     const [orderDetails] = useOrderDetails();
 
-    const orderDisabled = orderDetails.totals.scoops === '$0.00';
+    const orderDisabled = orderDetails.totals.scoops === '$0.00' ? true : false;
 
     return (
         <>
