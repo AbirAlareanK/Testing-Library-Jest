@@ -1,31 +1,33 @@
 import { useState } from 'react';
-import './App.css';
-
-
-export function precedeCamelToSpace(colorName) {
-   return colorName.replace(/\B([A-Z])\B/g, ' $1');
-}
+import Container from 'react-bootstrap/Container';
+import OrderConfirmation from './Components/SandaeOrder/Confirmation/OrderConfirmation';
+import OrderEntry from './Components/SandaeOrder/Entry/OdrerEntry';
+import OrderSummary from './Components/SandaeOrder/Summary/OrderSummary';
+import { OrderDetailsProvider } from './Context/OrderDetails';
 
 function App() {
+  const [ orderPhase , setOrderPhase ] = useState('inProgress');
 
-  const [ buttonColor , setButtonColor ] = useState('MediumVioletRed') ;
-  const [ disabledButton , setDisabledButton ] = useState(false);
-
-  const newButtonColor = buttonColor === 'MediumVioletRed' ? 'MidnightBlue' : 'MediumVioletRed'
+  let Component = OrderEntry ;
+  switch(orderPhase){
+    case 'review' : 
+      Component = OrderSummary
+    break;
+    case 'complete' : 
+      Component = OrderConfirmation
+    break;
+    case 'inProgress' :
+      Component = OrderEntry
+    break;
+    default: return null;
+  }
 
   return (
-    <div className="App-header">
-        <button onClick={()=> setButtonColor(newButtonColor)}
-                style={{backgroundColor : disabledButton ? 'gray' : buttonColor}}
-                disabled={disabledButton}
-        >Change to {precedeCamelToSpace(newButtonColor)}</button>
-        <input type="checkbox"
-                id="disable-button-checkbox"
-                aria-checked={disabledButton}
-                defaultChecked={disabledButton}
-                onChange={(e)=> setDisabledButton(e.target.checked)}/>
-        <label htmlFor="disable-button-checkbox">Disable button</label>
-    </div>
+    <Container>
+      <OrderDetailsProvider>
+        <Component setOrderPhase={setOrderPhase} style={{width:'60%'}}/>
+      </OrderDetailsProvider>
+    </Container>
   );
 }
 

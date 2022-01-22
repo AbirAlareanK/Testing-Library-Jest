@@ -1,8 +1,8 @@
 import { render, screen , fireEvent } from '@testing-library/react';
-import App , {precedeCamelToSpace} from './App';
+import ColorButton , {precedeCamelToSpace} from './ColorButton';
 
 test('Button has correct initial condition', () => {
-  render(<App />);
+  render(<ColorButton />);
   const button = screen.getByRole('button' , {name : /Change to Midnight Blue/i }) 
   expect(button).toHaveStyle({backgroundColor : 'MediumVioletRed'})
   fireEvent.click(button);
@@ -14,7 +14,7 @@ test('Button has correct initial condition', () => {
 
 
 test('initial button condition' , () => {
-  render(<App />);
+  render(<ColorButton />);
 
   const button = screen.getByRole('button' , { name : /Change to Midnight Blue/i  })
 
@@ -25,7 +25,7 @@ test('initial button condition' , () => {
 })
 
 test('Toggle button disability on click' , () => {
-  render(<App />);
+  render(<ColorButton />);
 
   const checkbox = screen.getByRole('checkbox' , {name : 'Disable button'});
   const button = screen.getByRole('button' , {name : /Change to Midnight Blue/i })
@@ -38,7 +38,7 @@ test('Toggle button disability on click' , () => {
 
 test('Disabled button has a gray bg and reverts to red' , ()=> {
   
-  render(<App />);
+  render(<ColorButton />);
 
   const checkbox = screen.getByRole('checkbox' , {name : 'Disable button'});
   const button = screen.getByRole('button' , {name : /Change to Midnight Blue/i });
@@ -52,7 +52,7 @@ test('Disabled button has a gray bg and reverts to red' , ()=> {
 })
 
 test('clicked disabled button has gray bg and reverts to blue' , ()=> {
-  render(<App />);
+  render(<ColorButton />);
 
   const checkbox = screen.getByRole('checkbox' , {name : 'Disable button'});
   const button = screen.getByRole('button' , {name : /Change to Midnight Blue/i });
